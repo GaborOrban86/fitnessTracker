@@ -4,8 +4,8 @@ import datas.Data;
 import datas.Rate;
 
 public class User extends Human {
-    private Rate bmiRate = bmiRateCalculator();
-    private Rate idealWeight;
+    private Rate bmiRate;
+    private Rate idealWeightRate;
     private Rate idealBodyFat;
     private Rate idealMuscleMass;
     private Data firstData = new Data();
@@ -18,17 +18,26 @@ public class User extends Human {
 
 
     public Rate bmiRateCalculator() {
-        if (actualData.getBmi() > 18.5 && actualData.getBmi() <= 24.9) {
+        double currentBmi = actualData.getBmi();
+        if (currentBmi > 18.5 && currentBmi <= 24.9) {
             return Rate.NORMAL;
-        } else if (actualData.getBmi() < 18.5) {
+        } else if (currentBmi < 18.5) {
             return Rate.LOW;
         } else {
             return Rate.HIGH;
         }
     }
 
-    public Rate idealWeight() {
-        return null;
+    public Rate idealWeightRate() {
+        double idealWeight = actualData.getHeight() - 100;
+        double currentWeight = actualData.getWeight();
+        if (currentWeight < idealWeight - (idealWeight * 0.05)) {
+            return Rate.LOW;
+        } else if (currentWeight > idealWeight + (idealWeight * 0.05)) {
+            return Rate.HIGH;
+        } else {
+            return Rate.NORMAL;
+        }
     }
 
     public Rate idealBodyFatCalculator() {
