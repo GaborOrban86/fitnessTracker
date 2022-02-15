@@ -2,7 +2,7 @@ package Objects;
 
 import datas.Data;
 
-public class Person extends Human {
+public class User extends Human {
     private double idealBmi;
     private double idealBodyFat;
     private double idealMuscleMAss;
@@ -10,7 +10,7 @@ public class Person extends Human {
     private Data previousData = new Data();
     private Data actualData = new Data();
 
-    public Person(String name, String sex, String email, int yearOfBirth) {
+    public User(String name, String sex, String email, int yearOfBirth) {
         super(name, sex, email, yearOfBirth);
     }
 

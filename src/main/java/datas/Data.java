@@ -4,13 +4,13 @@ import java.time.LocalDate;
 
 public class Data {
     private int height;
-    private float weight;
-    private float fat;
-    private float muscle;
+    private double weight;
+    private double fat;
+    private double muscle;
     private double bmi = bmiCalculator();
     private String month = tellTheMonth();
 
-    public Data(int height, float weight, float fat, float muscle) {
+    public Data(int height, double weight, double fat, double muscle) {
         this.height = height;
         this.weight = weight;
         this.fat = fat;
@@ -30,27 +30,27 @@ public class Data {
         this.height = height;
     }
 
-    public float getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(float weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
-    public float getFat() {
+    public double getFat() {
         return fat;
     }
 
-    public void setFat(float fat) {
+    public void setFat(double fat) {
         this.fat = fat;
     }
 
-    public float getMuscle() {
+    public double getMuscle() {
         return muscle;
     }
 
-    public void setMuscle(float muscle) {
+    public void setMuscle(double muscle) {
         this.muscle = muscle;
     }
 
