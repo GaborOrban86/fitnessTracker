@@ -15,19 +15,19 @@ public class FitnessRepository {
         return null;
     }
 
-    public Data searchData() {
+    public Data searchDataByEmailAndMonth() {
         return null;
     }
 
-    public List<Data> allData() {
+    public List<Data> allDataByEmail() {
         return null;
     }
 
-    public Data modifyData() {
+    public Data modifyDataById() {
         return null;
     }
 
-    public Data deleteData() {
+    public Data deleteDataById() {
         return null;
     }
 }

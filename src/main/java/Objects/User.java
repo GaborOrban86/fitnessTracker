@@ -1,11 +1,13 @@
 package Objects;
 
 import datas.Data;
+import datas.Rate;
 
 public class User extends Human {
-    private double idealBmi;
-    private double idealBodyFat;
-    private double idealMuscleMAss;
+    private Rate bmiRate = bmiRateCalculator();
+    private Rate idealWeight;
+    private Rate idealBodyFat;
+    private Rate idealMuscleMass;
     private Data firstData = new Data();
     private Data previousData = new Data();
     private Data actualData = new Data();
@@ -14,68 +16,27 @@ public class User extends Human {
         super(name, sex, email, yearOfBirth);
     }
 
-    public double getIdealBmi() {
-        return idealBmi;
+
+    public Rate bmiRateCalculator() {
+        if (actualData.getBmi() > 18.5 && actualData.getBmi() <= 24.9) {
+            return Rate.NORMAL;
+        } else if (actualData.getBmi() < 18.5) {
+            return Rate.LOW;
+        } else {
+            return Rate.HIGH;
+        }
     }
 
-    public void setIdealBmi(double idealBmi) {
-        this.idealBmi = idealBmi;
+    public Rate idealWeight() {
+        return null;
     }
 
-    public double getIdealBodyFat() {
-        return idealBodyFat;
+    public Rate idealBodyFatCalculator() {
+        return null;
     }
 
-    public void setIdealBodyFat(double idealBodyFat) {
-        this.idealBodyFat = idealBodyFat;
-    }
-
-    public double getIdealMuscleMAss() {
-        return idealMuscleMAss;
-    }
-
-    public void setIdealMuscleMAss(double idealMuscleMAss) {
-        this.idealMuscleMAss = idealMuscleMAss;
-    }
-
-    public Data getFirstData() {
-        return firstData;
-    }
-
-    public void setFirstData(Data firstData) {
-        this.firstData = firstData;
-    }
-
-    public Data getPreviousData() {
-        return previousData;
-    }
-
-    public void setPreviousData(Data previousData) {
-        this.previousData = previousData;
-    }
-
-    public Data getActualData() {
-        return actualData;
-    }
-
-    public void setActualData(Data actualData) {
-        this.actualData = actualData;
-    }
-
-    public double IdealBmiCalculator() {
-        return 0;
-    }
-
-    public double idealWeightCalculator() {
-        return 0;
-    }
-
-    public double idealBodFatCalculator() {
-        return 0;
-    }
-
-    public double idealMuscleCalculator() {
-        return 0;
+    public Rate idealMuscleCalculator() {
+        return null;
     }
 
 }

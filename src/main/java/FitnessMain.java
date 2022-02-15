@@ -15,27 +15,5 @@ public class FitnessMain {
         Data data2 = new Data(192, 101.6, 28.6, 35.3);
         System.out.println(data2.getMonth());
         System.out.println(data2.getBmi());
-//        boolean io = false;
-//        int number = 0;
-//        Scanner scanner = new Scanner(System.in);
-//        while (io != true) {
-//            System.out.println("Írd be a számot!");
-//            if (number >= 0 && number <= 8) {
-//                try {
-//                    number = scanner.nextInt();
-//                    scanner.nextLine();
-//                    System.out.println("Siker!");
-//                    io = true;
-//                }
-//            catch(RuntimeException exception){
-//                System.out.println("Nem megfelelő bevitel!");
-//                scanner.nextLine();
-//            }
-//            }
-//                else{
-//                    throw new RuntimeException("msg");
-//                }
-//            System.out.println(number);
-//        }
     }
 }
