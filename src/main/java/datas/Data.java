@@ -1,5 +1,6 @@
 package datas;
 
+import Objects.Human;
 import Objects.User;
 
 import java.time.LocalDate;
@@ -9,11 +10,12 @@ public class Data {
     private double weight;
     private double fat;
     private double muscle;
-    private double bmi = bmiCalculator();
-    private String month = tellTheMonth();
-
-    public Data() {
-    }
+    private double bmi;
+    private String month;
+    private Rate bmiRate;
+    private Rate idealWeightRate;
+    private Rate idealBodyFatRate;
+    private Rate idealMuscleMassRate;
 
     public Data(int height, double weight, double fat, double muscle) {
         this.height = height;
@@ -22,6 +24,8 @@ public class Data {
         this.muscle = muscle;
         this.bmi = bmiCalculator();
         this.month = tellTheMonth();
+        this.bmiRate = idealBmiRateCalc();
+        this.idealWeightRate = idealWeightRateCalc();
     }
 
     private String tellTheMonth() {
@@ -30,15 +34,94 @@ public class Data {
     }
 
     private double bmiCalculator() {
-        double heightInSquareMeter = height * (height / 100);
+        double heightInSquareMeter = (double) height * height / 100;
 
-        int bmi = (int) ((weight / heightInSquareMeter) * 10000);
+        double bmi = (int) ((weight / heightInSquareMeter) * 10000);
         return bmi / 100;
 
     }
 
-    public int idealWeightCalculator() {
+    private int idealWeightCalculator() {
         return getHeight() - 100;
+    }
+
+    private Rate idealBmiRateCalc() {
+        double bmiMin = BMI.MIN.getLimit();
+        double bmiMax = BMI.MAX.getLimit();
+        if (bmi >= bmiMin && bmi <= bmiMax) {
+            return Rate.NORMAL;
+        } else if (bmi > bmiMax) {
+            return Rate.HIGH;
+        } else {
+            return Rate.LOW;
+        }
+    }
+
+    private Rate idealWeightRateCalc() {
+        double idealWeight = idealWeightCalculator();
+        if (weight < idealWeight - (idealWeight * 0.05)) {
+            return Rate.LOW;
+        } else if (weight > idealWeight + (idealWeight * 0.05)) {
+            return Rate.HIGH;
+        } else {
+            return Rate.NORMAL;
+        }
+    }
+
+    public Rate idealBodyFatRateCalc(Gender gender) {
+        if (Gender.FEMALE.equals(gender)) {
+            if (fat < BodyFatWomen.MIN.getLimit()) {
+                return Rate.LOW;
+            } else if (fat > BodyFatWomen.MAX.getLimit()) {
+                return Rate.HIGH;
+            } else {
+                return Rate.NORMAL;
+            }
+        } else {
+            if (fat < BodyFatMen.MIN.getLimit()) {
+                return Rate.LOW;
+            } else if (fat > BodyFatMen.MAX.getLimit()) {
+                return Rate.HIGH;
+            } else {
+                return Rate.NORMAL;
+            }
+        }
+    }
+
+    public Rate idealMuscleRateCalc(Gender gender) {
+        if (Gender.FEMALE.equals(gender)) {
+            if (muscle < MuscleMassWomen.MIN.getLimit()) {
+                return Rate.LOW;
+            } else if (muscle > MuscleMassWomen.MAX.getLimit()) {
+                return Rate.HIGH;
+            } else {
+                return Rate.NORMAL;
+            }
+        } else {
+            if (muscle < MuscleMassMen.MIN.getLimit()) {
+                return Rate.LOW;
+            } else if (muscle > MuscleMassMen.MAX.getLimit()) {
+                return Rate.HIGH;
+            } else {
+                return Rate.NORMAL;
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Data{" +
+                "  height=" + height +
+                ", weight=" + weight +
+                ", fat=" + fat +
+                ", muscle=" + muscle +
+                ", bmi=" + bmi +
+                ", month='" + month + '\'' +
+                ", bmiRate=" + bmiRate +
+                ", idealWeightRate=" + idealWeightRate +
+                ", idealBodyFatRate=" + idealBodyFatRate +
+                ", idealMuscleMassRate=" + idealMuscleMassRate +
+                '}';
     }
 
     public int getHeight() {
@@ -73,6 +156,14 @@ public class Data {
         this.muscle = muscle;
     }
 
+    public double getBmi() {
+        return bmi;
+    }
+
+    public void setBmi(double bmi) {
+        this.bmi = bmi;
+    }
+
     public String getMonth() {
         return month;
     }
@@ -81,11 +172,35 @@ public class Data {
         this.month = month;
     }
 
-    public double getBmi() {
-        return bmi;
+    public Rate getBmiRate() {
+        return bmiRate;
     }
 
-    public void setBmi(double bmi) {
-        this.bmi = bmi;
+    public void setBmiRate(Rate bmiRate) {
+        this.bmiRate = bmiRate;
+    }
+
+    public Rate getIdealWeightRate() {
+        return idealWeightRate;
+    }
+
+    public void setIdealWeightRate(Rate idealWeightRate) {
+        this.idealWeightRate = idealWeightRate;
+    }
+
+    public Rate getIdealBodyFatRate() {
+        return idealBodyFatRate;
+    }
+
+    public void setIdealBodyFatRate(Rate idealBodyFatRate) {
+        this.idealBodyFatRate = idealBodyFatRate;
+    }
+
+    public Rate getIdealMuscleMassRate() {
+        return idealMuscleMassRate;
+    }
+
+    public void setIdealMuscleMassRate(Rate idealMuscleMassRate) {
+        this.idealMuscleMassRate = idealMuscleMassRate;
     }
 }

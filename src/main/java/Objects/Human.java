@@ -9,17 +9,17 @@ public abstract class Human {
     protected Gender gender;
     protected String email;
     protected int yearOfBirth;
-    protected int age = ageCalculator();
+    protected int age;
 
-    public Human(String name, Gender gender, String email, int yearOfBirth) {
+    public Human() {
     }
 
-    public Human(String name, Gender gender, String email, int yearOfBirth, int age) {
+    public Human(String name, Gender gender, String email, int yearOfBirth) {
         this.name = name;
         this.gender = gender;
         this.email = email;
         this.yearOfBirth = yearOfBirth;
-        this.age = age;
+        this.age = ageCalculator();
     }
 
     public int ageCalculator() {

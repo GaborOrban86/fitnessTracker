@@ -1,7 +1,7 @@
 package datas;
 
 public enum MuscleMassWomen {
-    MIN(33.3), MAX(39.3);
+    MIN(24.1), MAX(30.1);
 
     private final double limit;
 
