@@ -1,23 +1,19 @@
 package Objects;
 
-import datas.BMI;
-import datas.Data;
-import datas.Rate;
-import datas.BMI;
+import datas.*;
 
 public class User extends Human {
-    private Rate bmiRate;
-    private Rate idealWeightRate;
-    private Rate idealBodyFatRate;
-    private Rate idealMuscleMassRate;
+    private Rate bmiRate = idealBmiRateCalc();
+    private Rate idealWeightRate = idealWeightRateCalc();
+    private Rate idealBodyFatRate = idealBodyFatRateCalc();
+    private Rate idealMuscleMassRate = idealMuscleRateCalc();
     private Data firstData = new Data();
     private Data previousData = new Data();
     private Data actualData = new Data();
 
-    public User(String name, String sex, String email, int yearOfBirth) {
-        super(name, sex, email, yearOfBirth);
+    public User(String name, Gender gender, String email, int yearOfBirth) {
+        super(name, gender, email, yearOfBirth);
     }
-
 
     public Rate idealBmiRateCalc() {
         double currentBmi = actualData.getBmi();
@@ -45,11 +41,45 @@ public class User extends Human {
     }
 
     public Rate idealBodyFatRateCalc() {
-        return null;
+        double currentBodyFat = actualData.getFat();
+        if (gender.equals(Gender.FEMALE)) {
+            if (currentBodyFat < BodyFatWomen.MIN.getLimit()) {
+                return Rate.LOW;
+            } else if (currentBodyFat > BodyFatWomen.MAX.getLimit()) {
+                return Rate.HIGH;
+            } else {
+                return Rate.NORMAL;
+            }
+        } else {
+            if (currentBodyFat < BodyFatMen.MIN.getLimit()) {
+                return Rate.LOW;
+            } else if (currentBodyFat > BodyFatMen.MAX.getLimit()) {
+                return Rate.HIGH;
+            } else {
+                return Rate.NORMAL;
+            }
+        }
     }
 
     public Rate idealMuscleRateCalc() {
-        return null;
+        double currentMuscleMAss = actualData.getMuscle();
+        if (gender.equals(Gender.FEMALE)) {
+            if (currentMuscleMAss < MuscleMassWomen.MIN.getLimit()) {
+                return Rate.LOW;
+            } else if (currentMuscleMAss > MuscleMassWomen.MAX.getLimit()) {
+                return Rate.HIGH;
+            } else {
+                return Rate.NORMAL;
+            }
+        } else {
+            if (currentMuscleMAss < MuscleMassMen.MIN.getLimit()) {
+                return Rate.LOW;
+            } else if (currentMuscleMAss > MuscleMassMen.MAX.getLimit()) {
+                return Rate.HIGH;
+            } else {
+                return Rate.NORMAL;
+            }
+        }
     }
 
 }

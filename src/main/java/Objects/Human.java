@@ -1,23 +1,25 @@
 package Objects;
 
+import datas.Gender;
+
 import java.time.LocalDate;
 
 public abstract class Human {
     protected String name;
-    protected String gender;
+    protected Gender gender;
     protected String email;
     protected int yearOfBirth;
     protected int age = ageCalculator();
 
-    public Human() {
+    public Human(String name, Gender gender, String email, int yearOfBirth) {
     }
 
-    public Human(String name, String sex, String email, int yearOfBirth) {
+    public Human(String name, Gender gender, String email, int yearOfBirth, int age) {
         this.name = name;
         this.gender = gender;
         this.email = email;
         this.yearOfBirth = yearOfBirth;
-        this.age = ageCalculator();
+        this.age = age;
     }
 
     public int ageCalculator() {
@@ -33,11 +35,11 @@ public abstract class Human {
         this.name = name;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

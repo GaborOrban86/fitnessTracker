@@ -1,5 +1,7 @@
 package datas;
 
+import Objects.User;
+
 import java.time.LocalDate;
 
 public class Data {
@@ -28,24 +30,15 @@ public class Data {
     }
 
     private double bmiCalculator() {
-        double heightInSquareMeter = height * height / 100;
+        double heightInSquareMeter = height * (height / 100);
 
-        int number = (int) ((weight / heightInSquareMeter) * 10000);
-        double finalNumber = number;
-        return finalNumber / 100;
+        int bmi = (int) ((weight / heightInSquareMeter) * 10000);
+        return bmi / 100;
 
     }
 
     public int idealWeightCalculator() {
         return getHeight() - 100;
-    }
-
-    public Rate idealBodyFatCalculator() {
-        return null;
-    }
-
-    public Rate idealMuscleCalculator() {
-        return null;
     }
 
     public int getHeight() {

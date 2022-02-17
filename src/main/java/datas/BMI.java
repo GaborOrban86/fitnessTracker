@@ -5,7 +5,6 @@ public enum BMI {
 
 private final double limit;
 
-
     BMI(double limit) {
         this.limit = limit;
     }

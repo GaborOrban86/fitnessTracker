@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class FitnessMain {
 
     public static void main(String[] args) {
-        User user2 = new User("Kati", Gender.FEMALE.genderBack(), "hlgk@gmgm.hu", 1986);
+        User user2 = new User("Kati", Gender.FEMALE, "hlgk@gmgm.hu", 1986);
         System.out.println(user2.getAge());
         System.out.println(user2.getYearOfBirth());
         Data data = new Data();
