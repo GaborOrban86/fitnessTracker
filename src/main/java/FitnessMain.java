@@ -1,4 +1,5 @@
 import Objects.User;
+import datas.BMI;
 import datas.Data;
 import datas.Gender;
 

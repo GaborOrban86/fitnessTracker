@@ -12,7 +12,12 @@ public enum Gender {
         this.gender = gender;
     }
 
-    public String genderBack() {
+    public int getMarker() {
+        return marker;
+    }
+
+    public String getGender() {
         return gender;
     }
+
 }

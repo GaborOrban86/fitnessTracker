@@ -20,6 +20,11 @@ public abstract class Human {
         this.age = ageCalculator();
     }
 
+    public int ageCalculator() {
+        LocalDate date = LocalDate.now();
+        return date.getYear() - yearOfBirth;
+    }
+
     public String getName() {
         return name;
     }
@@ -58,10 +63,5 @@ public abstract class Human {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public int ageCalculator() {
-        LocalDate date = LocalDate.now();
-        return date.getYear() - yearOfBirth;
     }
 }

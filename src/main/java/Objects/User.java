@@ -1,13 +1,15 @@
 package Objects;
 
+import datas.BMI;
 import datas.Data;
 import datas.Rate;
+import datas.BMI;
 
 public class User extends Human {
     private Rate bmiRate;
     private Rate idealWeightRate;
-    private Rate idealBodyFat;
-    private Rate idealMuscleMass;
+    private Rate idealBodyFatRate;
+    private Rate idealMuscleMassRate;
     private Data firstData = new Data();
     private Data previousData = new Data();
     private Data actualData = new Data();
@@ -17,19 +19,21 @@ public class User extends Human {
     }
 
 
-    public Rate bmiRateCalculator() {
+    public Rate idealBmiRateCalc() {
         double currentBmi = actualData.getBmi();
-        if (currentBmi > 18.5 && currentBmi <= 24.9) {
+        double bmiMin = BMI.MIN.getLimit();
+        double bmiMax = BMI.MAX.getLimit();
+        if (currentBmi > bmiMin && currentBmi <= bmiMax) {
             return Rate.NORMAL;
-        } else if (currentBmi < 18.5) {
+        } else if (currentBmi < bmiMin) {
             return Rate.LOW;
         } else {
             return Rate.HIGH;
         }
     }
 
-    public Rate idealWeightRate() {
-        double idealWeight = actualData.getHeight() - 100;
+    public Rate idealWeightRateCalc() {
+        double idealWeight = actualData.idealWeightCalculator();
         double currentWeight = actualData.getWeight();
         if (currentWeight < idealWeight - (idealWeight * 0.05)) {
             return Rate.LOW;
@@ -40,11 +44,11 @@ public class User extends Human {
         }
     }
 
-    public Rate idealBodyFatCalculator() {
+    public Rate idealBodyFatRateCalc() {
         return null;
     }
 
-    public Rate idealMuscleCalculator() {
+    public Rate idealMuscleRateCalc() {
         return null;
     }
 

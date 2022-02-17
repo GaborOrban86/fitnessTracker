@@ -10,6 +10,9 @@ public class Data {
     private double bmi = bmiCalculator();
     private String month = tellTheMonth();
 
+    public Data() {
+    }
+
     public Data(int height, double weight, double fat, double muscle) {
         this.height = height;
         this.weight = weight;
@@ -19,7 +22,30 @@ public class Data {
         this.month = tellTheMonth();
     }
 
-    public Data() {
+    private String tellTheMonth() {
+        LocalDate date = LocalDate.now();
+        return String.valueOf(date.getMonth());
+    }
+
+    private double bmiCalculator() {
+        double heightInSquareMeter = height * height / 100;
+
+        int number = (int) ((weight / heightInSquareMeter) * 10000);
+        double finalNumber = number;
+        return finalNumber / 100;
+
+    }
+
+    public int idealWeightCalculator() {
+        return getHeight() - 100;
+    }
+
+    public Rate idealBodyFatCalculator() {
+        return null;
+    }
+
+    public Rate idealMuscleCalculator() {
+        return null;
     }
 
     public int getHeight() {
@@ -68,19 +94,5 @@ public class Data {
 
     public void setBmi(double bmi) {
         this.bmi = bmi;
-    }
-
-    private String tellTheMonth() {
-        LocalDate date = LocalDate.now();
-        return String.valueOf(date.getMonth());
-    }
-
-    private double bmiCalculator() {
-        double heightInSquareMeter = height * height / 100;
-
-        int number = (int) ((weight / heightInSquareMeter) * 10000);
-        double finalNumber = number;
-        return finalNumber / 100;
-
     }
 }
