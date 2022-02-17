@@ -1,6 +1,6 @@
 package Objects;
 
-import datas.*;
+import enums.*;
 
 public class User extends Human {
     private Data firstData;

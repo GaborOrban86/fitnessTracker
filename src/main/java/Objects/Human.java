@@ -1,6 +1,6 @@
 package Objects;
 
-import datas.Gender;
+import enums.Gender;
 
 import java.time.LocalDate;
 

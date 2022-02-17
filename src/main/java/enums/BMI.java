@@ -1,4 +1,4 @@
-package datas;
+package enums;
 
 public enum BMI {
     MIN (18.5), MAX(24.9);

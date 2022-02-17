@@ -1,9 +1,7 @@
 package database;
 
-import Objects.Human;
-import datas.Data;
+import Objects.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FitnessRepository {
@@ -11,15 +9,19 @@ public class FitnessRepository {
     public void createTable() {
     }
 
+    public Data newUser() {
+        return null;
+    }
+
     public Data newData() {
         return null;
     }
 
-    public Data searchDataByEmailAndMonth() {
+    public Data searchDataByUserEmail() {
         return null;
     }
 
-    public List<Data> allDataByEmail() {
+    public List<Data> allDataByUserEmail() {
         return null;
     }
 

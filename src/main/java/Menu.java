@@ -1,5 +1,3 @@
-package datas;
-
 public class Menu {
 
     public void printer() {

@@ -1,7 +1,8 @@
-package datas;
+package Objects;
 
-import Objects.Human;
-import Objects.User;
+import enums.BMI;
+import enums.Gender;
+import enums.Rate;
 
 import java.time.LocalDate;
 
@@ -69,49 +70,29 @@ public class Data {
     }
 
     public Rate idealBodyFatRateCalc(Gender gender) {
-        if (Gender.FEMALE.equals(gender)) {
-            if (fat < BodyFatWomen.MIN.getLimit()) {
-                return Rate.LOW;
-            } else if (fat > BodyFatWomen.MAX.getLimit()) {
-                return Rate.HIGH;
-            } else {
-                return Rate.NORMAL;
-            }
+        if (fat < gender.getBodyFatMin()) {
+            return Rate.LOW;
+        } else if (fat > gender.getBodyFatMax()) {
+            return Rate.HIGH;
         } else {
-            if (fat < BodyFatMen.MIN.getLimit()) {
-                return Rate.LOW;
-            } else if (fat > BodyFatMen.MAX.getLimit()) {
-                return Rate.HIGH;
-            } else {
-                return Rate.NORMAL;
-            }
+            return Rate.NORMAL;
         }
     }
 
     public Rate idealMuscleRateCalc(Gender gender) {
-        if (Gender.FEMALE.equals(gender)) {
-            if (muscle < MuscleMassWomen.MIN.getLimit()) {
-                return Rate.LOW;
-            } else if (muscle > MuscleMassWomen.MAX.getLimit()) {
-                return Rate.HIGH;
-            } else {
-                return Rate.NORMAL;
-            }
+        if (muscle < gender.getMuscleMassMin()) {
+            return Rate.LOW;
+        } else if (muscle > gender.getMuscleMassMax()) {
+            return Rate.HIGH;
         } else {
-            if (muscle < MuscleMassMen.MIN.getLimit()) {
-                return Rate.LOW;
-            } else if (muscle > MuscleMassMen.MAX.getLimit()) {
-                return Rate.HIGH;
-            } else {
-                return Rate.NORMAL;
-            }
+            return Rate.NORMAL;
         }
     }
 
     @Override
     public String toString() {
         return "Data{" +
-                "  height=" + height +
+                ", height=" + height +
                 ", weight=" + weight +
                 ", fat=" + fat +
                 ", muscle=" + muscle +
