@@ -1,51 +1,36 @@
 package Objects;
 
-import enums.*;
+import enums.Gender;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class User extends Human {
-    private Data firstData;
-    private Data previousData;
-    private Data actualData;
+    private List<Data> allDatas = new ArrayList<>();
 
     public User() {
     }
 
-    public User(String name, Gender gender, String email, int yearOfBirth) {
-        super(name, gender, email, yearOfBirth);
+    public User(String email, String name, Gender gender, int yearOfBirth) {
+        super(email, name, gender, yearOfBirth);
     }
 
     @Override
     public String toString() {
         return "User{" +
+                ", email='" + email + '\'' +
                 "name='" + name + '\'' +
                 ", gender=" + gender +
-                ", email='" + email + '\'' +
                 ", yearOfBirth=" + yearOfBirth +
                 ", age=" + age +
                 '}';
     }
 
-    public Data getFirstData() {
-        return firstData;
+    public List<Data> getAllDatas() {
+        return allDatas;
     }
 
-    public void setFirstData(Data firstData) {
-        this.firstData = firstData;
-    }
-
-    public Data getPreviousData() {
-        return previousData;
-    }
-
-    public void setPreviousData(Data previousData) {
-        this.previousData = previousData;
-    }
-
-    public Data getActualData() {
-        return actualData;
-    }
-
-    public void setActualData(Data actualData) {
-        this.actualData = actualData;
+    public void setAllDatas(List<Data> allDatas) {
+        this.allDatas = allDatas;
     }
 }

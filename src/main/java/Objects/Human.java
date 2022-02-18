@@ -5,19 +5,19 @@ import enums.Gender;
 import java.time.LocalDate;
 
 public abstract class Human {
+    protected String email;
     protected String name;
     protected Gender gender;
-    protected String email;
     protected int yearOfBirth;
     protected int age;
 
     public Human() {
     }
 
-    public Human(String name, Gender gender, String email, int yearOfBirth) {
+    public Human(String email, String name, Gender gender, int yearOfBirth) {
+        this.email = email;
         this.name = name;
         this.gender = gender;
-        this.email = email;
         this.yearOfBirth = yearOfBirth;
         this.age = ageCalculator();
     }

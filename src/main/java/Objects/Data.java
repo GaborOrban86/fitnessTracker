@@ -6,7 +6,11 @@ import enums.Rate;
 
 import java.time.LocalDate;
 
+import static enums.Gender.FEMALE;
+import static enums.Gender.MALE;
+
 public class Data {
+    private int serial;
     private int height;
     private double weight;
     private double fat;
@@ -18,7 +22,11 @@ public class Data {
     private Rate idealBodyFatRate;
     private Rate idealMuscleMassRate;
 
+    public Data() {
+    }
+
     public Data(int height, double weight, double fat, double muscle) {
+        this.serial = 0;
         this.height = height;
         this.weight = weight;
         this.fat = fat;
@@ -46,7 +54,7 @@ public class Data {
         return getHeight() - 100;
     }
 
-    private Rate idealBmiRateCalc() {
+    public Rate idealBmiRateCalc() {
         double bmiMin = BMI.MIN.getLimit();
         double bmiMax = BMI.MAX.getLimit();
         if (bmi >= bmiMin && bmi <= bmiMax) {
@@ -58,7 +66,7 @@ public class Data {
         }
     }
 
-    private Rate idealWeightRateCalc() {
+    public Rate idealWeightRateCalc() {
         double idealWeight = idealWeightCalculator();
         if (weight < idealWeight - (idealWeight * 0.05)) {
             return Rate.LOW;
@@ -89,9 +97,21 @@ public class Data {
         }
     }
 
+    public Gender setAGender(String genderName) {
+        Gender gender;
+        if (genderName.equals(FEMALE.getGenderName())) {
+            gender = FEMALE;
+        } else {
+            gender = MALE;
+        }
+        return gender;
+    }
+
+
     @Override
     public String toString() {
         return "Data{" +
+                "serial=" + serial +
                 ", height=" + height +
                 ", weight=" + weight +
                 ", fat=" + fat +
@@ -103,6 +123,14 @@ public class Data {
                 ", idealBodyFatRate=" + idealBodyFatRate +
                 ", idealMuscleMassRate=" + idealMuscleMassRate +
                 '}';
+    }
+
+    public int getSerial() {
+        return serial;
+    }
+
+    public void setSerial(int serial) {
+        this.serial = serial;
     }
 
     public int getHeight() {

@@ -6,6 +6,6 @@ public class Menu {
     public void resultMessages() {
     }
 
-    public void export() {
+    public void exportAllDatas() {
     }
 }
