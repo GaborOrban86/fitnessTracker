@@ -2,14 +2,10 @@ package database;
 
 import Objects.Data;
 import Objects.User;
-import enums.Gender;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static enums.Gender.FEMALE;
-import static enums.Gender.MALE;
 
 public class FitnessRepository {
 
@@ -70,23 +66,14 @@ public class FitnessRepository {
             preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Data data = new Data();
-                String genderName = resultSet.getString("gender");
-                data.setSerial(resultSet.getInt("id"));
-                data.setHeight(resultSet.getInt("height"));
-                data.setWeight(resultSet.getDouble("weight"));
-                data.setFat(resultSet.getDouble("fat"));
-                data.setMuscle(resultSet.getDouble("muscle"));
-                data.setBmi(resultSet.getDouble("bmi"));
-                data.setMonth(resultSet.getString("month"));
-                data.setBmiRate(data.idealBmiRateCalc());
-                data.setIdealWeightRate(data.idealWeightRateCalc());
-                data.setIdealBodyFatRate(data.idealBodyFatRateCalc(data.setAGender(genderName)));
-                data.setIdealMuscleMassRate(data.idealMuscleRateCalc(data.setAGender(genderName)));
+
+                Data data = dataMaker(resultSet.getInt("id"), resultSet.getInt("height"),
+                        resultSet.getDouble("weight"), resultSet.getDouble("fat"),
+                        resultSet.getDouble("muscle"), resultSet.getDouble("bmi"),
+                        resultSet.getString("month"), resultSet.getString("gender"));
                 datas.add(data);
             }
-            datas.stream()
-                    .forEach(System.out::println);
+            datas.forEach(System.out::println);
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -94,8 +81,31 @@ public class FitnessRepository {
         return datas;
     }
 
-    public Data searchDataById() {
-        return null;
+    public Data searchDataById(int id) {
+        Data data = new Data();
+        String dataQuery = "SELECT * FROM datas f " +
+                "JOIN user u ON u.email = f.user_email " +
+                "WHERE f.id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(dataQuery)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+
+                data = dataMaker(resultSet.getInt("id"), resultSet.getInt("height"),
+                        resultSet.getDouble("weight"), resultSet.getDouble("fat"),
+                        resultSet.getDouble("muscle"), resultSet.getDouble("bmi"),
+                        resultSet.getString("month"), resultSet.getString("gender"));
+            }
+            if(data.getSerial() != 0){
+                System.out.println(data);
+            } else {
+                System.out.println("This data is not exists.");
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return data;
     }
 
     public Data modifyDataById() {
@@ -104,6 +114,23 @@ public class FitnessRepository {
 
     public Data deleteDataById() {
         return null;
+    }
+
+    public Data dataMaker(int id, int height, Double weight, Double fat, Double muscle,
+                          Double bmi, String month, String genderName) {
+        Data data = new Data();
+        data.setSerial(id);
+        data.setHeight(height);
+        data.setWeight(weight);
+        data.setFat(fat);
+        data.setMuscle(muscle);
+        data.setBmi(bmi);
+        data.setMonth(month);
+        data.setBmiRate(data.idealBmiRateCalc());
+        data.setIdealWeightRate(data.idealWeightRateCalc());
+        data.setIdealBodyFatRate(data.idealBodyFatRateCalc(data.setAGender(genderName)));
+        data.setIdealMuscleMassRate(data.idealMuscleRateCalc(data.setAGender(genderName)));
+        return data;
     }
 
 }

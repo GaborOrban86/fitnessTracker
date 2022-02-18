@@ -8,7 +8,9 @@ public class FitnessMain {
     public static void main(String[] args) {
         FitnessRepository fitnessRepository = new FitnessRepository();
         User user3 = new User("hlgkk@gmgm.hu", "Katki", Gender.FEMALE, 1958);
-        fitnessRepository.allDataByUserEmail(user3.getEmail());
+        System.out.println(fitnessRepository.allDataByUserEmail("ad@papamaci.hu").get(0).getWeight());
+
+//        fitnessRepository.searchDataById(18);
 //        System.out.println(user2);
 //        fitnessRepository.newUser(user3);
 //        Data data2 = new Data(188, 82, 28, 35.3);
