@@ -170,17 +170,93 @@ public class FitnessRepository {
         }
     }
 
-    public Data giveFirst() {
-       return null;
+    public Data giveFirst(String email) {
+        Data data = new Data();
+        String dataQuery = "SELECT * FROM data f " +
+                "JOIN user u ON u.email = f.user_email " +
+                "WHERE f.user_email = ? " +
+                "ORDER BY id ASC " +
+                "LIMIT 1";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(dataQuery)) {
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+
+                data = dataMaker(resultSet.getInt("id"), resultSet.getInt("height"),
+                        resultSet.getDouble("weight"), resultSet.getDouble("fat"),
+                        resultSet.getDouble("muscle"), resultSet.getDouble("bmi"),
+                        resultSet.getString("month"), resultSet.getString("gender"));
+            }
+            if (data.getSerial() != 0) {
+                System.out.println(data);
+            } else {
+                System.out.println("This data is not exists.");
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return data;
     }
 
-    public Data givePrevious() {
-        return null;
+    public Data giveLast(String email) {
+        Data data = new Data();
+        String dataQuery = "SELECT * FROM data f " +
+                "JOIN user u ON u.email = f.user_email " +
+                "WHERE f.user_email = ? " +
+                "ORDER BY id DESC " +
+                "LIMIT 1";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(dataQuery)) {
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+
+                data = dataMaker(resultSet.getInt("id"), resultSet.getInt("height"),
+                        resultSet.getDouble("weight"), resultSet.getDouble("fat"),
+                        resultSet.getDouble("muscle"), resultSet.getDouble("bmi"),
+                        resultSet.getString("month"), resultSet.getString("gender"));
+            }
+            if (data.getSerial() != 0) {
+                System.out.println(data);
+            } else {
+                System.out.println("This data is not exists.");
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return data;
     }
 
-    public Data giveLast() {
-        return null;
+    public Data givePrevious(String email) {
+        Data data = new Data();
+        String dataQuery = "SELECT * FROM data f " +
+                "JOIN user u ON u.email = f.user_email " +
+                "WHERE f.user_email = ? " +
+                "ORDER BY id DESC " +
+                "LIMIT 1 OFFSET 1";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(dataQuery)) {
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+
+                data = dataMaker(resultSet.getInt("id"), resultSet.getInt("height"),
+                        resultSet.getDouble("weight"), resultSet.getDouble("fat"),
+                        resultSet.getDouble("muscle"), resultSet.getDouble("bmi"),
+                        resultSet.getString("month"), resultSet.getString("gender"));
+            }
+            if (data.getSerial() != 0) {
+                System.out.println(data);
+            } else {
+                System.out.println("This data is not exists.");
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return data;
     }
+
 
     public Data dataMaker(int id, int height, Double weight, Double fat, Double muscle,
                           Double bmi, String month, String genderName) {

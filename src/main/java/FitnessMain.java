@@ -1,4 +1,7 @@
+import Objects.Data;
+import Objects.User;
 import database.FitnessRepository;
+import enums.Gender;
 
 public class FitnessMain {
 
@@ -38,7 +41,10 @@ public class FitnessMain {
 //        fitnessRepository.searchDataById(5);
 //        fitnessRepository.modifyData(2, 189, 85, 30, 40, 25);
 //        fitnessRepository.searchDataById(2);
-//        fitnessRepository.deleteDataById(2);
+//        fitnessRepository.deleteDataById(1);
 //        fitnessRepository.searchDataById(2)
+        fitnessRepository.giveFirst("hlgkk@gmgm.hu");
+        fitnessRepository.giveLast("hlgkk@gmgm.hu");
+        fitnessRepository.givePrevious("hlgkk@gmgm.hu");
     }
 }

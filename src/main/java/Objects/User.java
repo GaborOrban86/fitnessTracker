@@ -2,9 +2,6 @@ package Objects;
 
 import enums.Gender;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class User extends Human {
     private Data firstData;
     private Data previousData;

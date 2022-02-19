@@ -108,6 +108,11 @@ public class Data {
     }
 
 
+    public double differencesBetweenTwoNumber(double one, double two) {
+        return one - two;
+    }
+
+
     @Override
     public String toString() {
         return "Data{" +
