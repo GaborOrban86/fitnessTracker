@@ -1,7 +1,7 @@
-package database;
+package fitnessTracker.database;
 
-import Objects.Data;
-import Objects.User;
+import fitnessTracker.objects.Data;
+import fitnessTracker.objects.User;
 
 import java.sql.*;
 import java.util.ArrayList;

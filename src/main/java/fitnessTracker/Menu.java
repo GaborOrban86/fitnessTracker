@@ -1,3 +1,5 @@
+package fitnessTracker;
+
 public class Menu {
 
     public void printer() {

@@ -1,7 +1,6 @@
-import Objects.Data;
-import Objects.User;
-import database.FitnessRepository;
-import enums.Gender;
+package fitnessTracker;
+
+import fitnessTracker.database.FitnessRepository;
 
 public class FitnessMain {
 

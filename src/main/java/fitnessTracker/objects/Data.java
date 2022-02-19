@@ -1,13 +1,13 @@
-package Objects;
+package fitnessTracker.objects;
 
-import enums.BMI;
-import enums.Gender;
-import enums.Rate;
+import fitnessTracker.enums.BMI;
+import fitnessTracker.enums.Gender;
+import fitnessTracker.enums.Rate;
 
 import java.time.LocalDate;
 
-import static enums.Gender.FEMALE;
-import static enums.Gender.MALE;
+import static fitnessTracker.enums.Gender.FEMALE;
+import static fitnessTracker.enums.Gender.MALE;
 
 public class Data {
     private int serial;

@@ -1,4 +1,4 @@
-package enums;
+package fitnessTracker.enums;
 
 public enum Months {
     JANUARY(1), FEBRUARY(2), MARCH(3), APRIL(4), MAY(5), JUNE(6), JULY(7),

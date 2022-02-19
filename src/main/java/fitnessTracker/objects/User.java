@@ -1,6 +1,6 @@
-package Objects;
+package fitnessTracker.objects;
 
-import enums.Gender;
+import fitnessTracker.enums.Gender;
 
 public class User extends Human {
     private Data firstData;

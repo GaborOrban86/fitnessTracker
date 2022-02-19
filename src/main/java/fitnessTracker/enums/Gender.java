@@ -1,4 +1,4 @@
-package enums;
+package fitnessTracker.enums;
 
 public enum Gender {
     MALE("man", 14, 24, 33.1, 39.1),

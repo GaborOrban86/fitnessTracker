@@ -1,4 +1,4 @@
-package database;
+package fitnessTracker.database;
 
 public class DatabaseConfig {
     public static final String DB_URL =
