@@ -3,6 +3,10 @@ package fitnessTracker.database;
 import fitnessTracker.objects.Data;
 import fitnessTracker.objects.User;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +74,28 @@ public class FitnessRepository {
         return user;
     }
 
+
+    public User getUserByEmail(String email) {
+        User user = new User();
+        String dataQuery = "SELECT * FROM user " +
+                "WHERE user.email = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(dataQuery)) {
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                user.setEmail(resultSet.getString("email"));
+                user.setName(resultSet.getString("name"));
+                user.setGender(user.setAGenderForUser(resultSet.getString("gender")));
+                user.setYearOfBirth(resultSet.getInt("year_of_birth"));
+                user.setAge(resultSet.getInt("age"));
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return user;
+    }
+
     public Data createData(String email, Data data) {
         String createData = "INSERT INTO data (user_email, height, weight, fat, muscle, bmi, month) VALUES (?,?,?,?,?,?,?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(createData)) {
@@ -106,7 +132,6 @@ public class FitnessRepository {
                         resultSet.getString("month"), resultSet.getString("gender"));
                 datas.add(data);
             }
-            datas.forEach(System.out::println);
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -129,9 +154,7 @@ public class FitnessRepository {
                         resultSet.getDouble("muscle"), resultSet.getDouble("bmi"),
                         resultSet.getString("month"), resultSet.getString("gender"));
             }
-            if (data.getSerial() != 0) {
-                System.out.println(data);
-            } else {
+            if (data.getSerial() <= 0) {
                 System.out.println("This data is not exists.");
             }
 
@@ -187,10 +210,8 @@ public class FitnessRepository {
                         resultSet.getDouble("muscle"), resultSet.getDouble("bmi"),
                         resultSet.getString("month"), resultSet.getString("gender"));
             }
-            if (data.getSerial() != 0) {
-                System.out.println(data);
-            } else {
-                System.out.println("This data is not exists.");
+            if (data.getSerial() <= 0) {
+                System.out.println("First data is not exists.");
             }
 
         } catch (SQLException throwables) {
@@ -216,10 +237,8 @@ public class FitnessRepository {
                         resultSet.getDouble("muscle"), resultSet.getDouble("bmi"),
                         resultSet.getString("month"), resultSet.getString("gender"));
             }
-            if (data.getSerial() != 0) {
-                System.out.println(data);
-            } else {
-                System.out.println("This data is not exists.");
+            if (data.getSerial() <= 0) {
+                System.out.println("Current data is not exists.");
             }
 
         } catch (SQLException throwables) {
@@ -245,10 +264,8 @@ public class FitnessRepository {
                         resultSet.getDouble("muscle"), resultSet.getDouble("bmi"),
                         resultSet.getString("month"), resultSet.getString("gender"));
             }
-            if (data.getSerial() != 0) {
-                System.out.println(data);
-            } else {
-                System.out.println("This data is not exists.");
+            if (data.getSerial() <= 0) {
+                System.out.println("Previous data is not exists.");
             }
 
         } catch (SQLException throwables) {
@@ -257,6 +274,21 @@ public class FitnessRepository {
         return data;
     }
 
+    public void exportAllDatas(User user) {
+        List<Data> allDataList = allDataByUserEmail(user.getEmail());
+        String fileName = "allData" + user.getName() + ".csv";
+        Path output = Path.of("src/main/resources/fitnessTracker").resolve(fileName);
+
+        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(output)) {
+            for (Data data : allDataList) {
+                bufferedWriter.write(data.toString());
+                bufferedWriter.newLine();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Data dataMaker(int id, int height, Double weight, Double fat, Double muscle,
                           Double bmi, String month, String genderName) {

@@ -107,27 +107,19 @@ public class Data {
         return gender;
     }
 
-
-    public double differencesBetweenTwoNumber(double one, double two) {
-        return one - two;
-    }
-
-
     @Override
     public String toString() {
-        return "Data{" +
-                "serial=" + serial +
+        return "serial=" + serial +
+                ", month='" + month +
                 ", height=" + height +
                 ", weight=" + weight +
                 ", fat=" + fat +
                 ", muscle=" + muscle +
                 ", bmi=" + bmi +
-                ", month='" + month + '\'' +
                 ", bmiRate=" + bmiRate +
                 ", idealWeightRate=" + idealWeightRate +
                 ", idealBodyFatRate=" + idealBodyFatRate +
-                ", idealMuscleMassRate=" + idealMuscleMassRate +
-                '}';
+                ", idealMuscleMassRate=" + idealMuscleMassRate;
     }
 
     public int getSerial() {

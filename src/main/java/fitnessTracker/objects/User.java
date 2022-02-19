@@ -2,6 +2,9 @@ package fitnessTracker.objects;
 
 import fitnessTracker.enums.Gender;
 
+import static fitnessTracker.enums.Gender.FEMALE;
+import static fitnessTracker.enums.Gender.MALE;
+
 public class User extends Human {
     private Data firstData;
     private Data previousData;
@@ -23,6 +26,16 @@ public class User extends Human {
                 ", yearOfBirth=" + yearOfBirth +
                 ", age=" + age +
                 '}';
+    }
+
+    public Gender setAGenderForUser(String genderName) {
+        Gender gender;
+        if (genderName.equals(FEMALE.getGenderName())) {
+            gender = FEMALE;
+        } else {
+            gender = MALE;
+        }
+        return gender;
     }
 
     public Data getFirstData() {
