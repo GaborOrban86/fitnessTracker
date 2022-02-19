@@ -17,16 +17,6 @@ public class User extends Human {
         super(email, name, gender, yearOfBirth);
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                ", email='" + email + '\'' +
-                "name='" + name + '\'' +
-                ", gender=" + gender +
-                ", yearOfBirth=" + yearOfBirth +
-                ", age=" + age +
-                '}';
-    }
 
     public Gender setAGenderForUser(String genderName) {
         Gender gender;
@@ -36,6 +26,17 @@ public class User extends Human {
             gender = MALE;
         }
         return gender;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                ", email='" + email + '\'' +
+                "name='" + name + '\'' +
+                ", gender=" + gender +
+                ", yearOfBirth=" + yearOfBirth +
+                ", age=" + age +
+                '}';
     }
 
     public Data getFirstData() {
