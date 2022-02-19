@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User extends Human {
-    private List<Data> allDatas = new ArrayList<>();
+    private Data firstData;
+    private Data previousData;
+    private Data actualData;
 
     public User() {
     }
@@ -26,11 +28,27 @@ public class User extends Human {
                 '}';
     }
 
-    public List<Data> getAllDatas() {
-        return allDatas;
+    public Data getFirstData() {
+        return firstData;
     }
 
-    public void setAllDatas(List<Data> allDatas) {
-        this.allDatas = allDatas;
+    public void setFirstData(Data firstData) {
+        this.firstData = firstData;
+    }
+
+    public Data getPreviousData() {
+        return previousData;
+    }
+
+    public void setPreviousData(Data previousData) {
+        this.previousData = previousData;
+    }
+
+    public Data getActualData() {
+        return actualData;
+    }
+
+    public void setActualData(Data actualData) {
+        this.actualData = actualData;
     }
 }

@@ -20,7 +20,40 @@ public class FitnessRepository {
         }
     }
 
-    public User newUser(User user) {
+    public void createUserTable() {
+        String sqlCreateTable = "CREATE TABLE IF NOT EXISTS user (" +
+                "email VARCHAR(100) PRIMARY KEY," +
+                "name VARCHAR(100) NOT NULL, " +
+                "gender VARCHAR(10) NOT NULL, " +
+                "year_of_birth INT NOT NULL,  " +
+                "age INT NOT NULL " +
+                ");";
+        try (Statement statement = connection.createStatement()) {
+            statement.execute(sqlCreateTable);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void createDataTable() {
+        String sqlCreateTable = "CREATE TABLE IF NOT EXISTS data (" +
+                "id INT AUTO_INCREMENT PRIMARY KEY, " +
+                "user_email VARCHAR(100) NOT NULL, " +
+                "height INT NOT NULL, " +
+                "weight DOUBLE NOT NULL, " +
+                "fat DOUBLE NOT NULL, " +
+                "muscle DOUBLE NOT NULL, " +
+                "bmi DOUBLE NOT NULL, " +
+                "month VARCHAR(45) NOT NULL " +
+                ");";
+        try (Statement statement = connection.createStatement()) {
+            statement.execute(sqlCreateTable);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public User createUser(User user) {
         String createUser = "INSERT INTO user (email, name, gender, year_of_birth, age) VALUES (?,?,?,?,?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(createUser)) {
             preparedStatement.setString(1, user.getEmail());
@@ -37,8 +70,8 @@ public class FitnessRepository {
         return user;
     }
 
-    public Data newData(String email, Data data) {
-        String createData = "INSERT INTO datas (user_email, height, weight, fat, muscle, bmi, month) VALUES (?,?,?,?,?,?,?)";
+    public Data createData(String email, Data data) {
+        String createData = "INSERT INTO data (user_email, height, weight, fat, muscle, bmi, month) VALUES (?,?,?,?,?,?,?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(createData)) {
             preparedStatement.setString(1, email);
             preparedStatement.setInt(2, data.getHeight());
@@ -59,10 +92,10 @@ public class FitnessRepository {
 
     public List<Data> allDataByUserEmail(String email) {
         List<Data> datas = new ArrayList<>();
-        String datasQuery = "SELECT * FROM datas f " +
+        String dataQuery = "SELECT * FROM data f " +
                 "JOIN user u ON u.email = f.user_email " +
                 "WHERE user_email = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(datasQuery)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(dataQuery)) {
             preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -83,7 +116,7 @@ public class FitnessRepository {
 
     public Data searchDataById(int id) {
         Data data = new Data();
-        String dataQuery = "SELECT * FROM datas f " +
+        String dataQuery = "SELECT * FROM data f " +
                 "JOIN user u ON u.email = f.user_email " +
                 "WHERE f.id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(dataQuery)) {
@@ -96,7 +129,7 @@ public class FitnessRepository {
                         resultSet.getDouble("muscle"), resultSet.getDouble("bmi"),
                         resultSet.getString("month"), resultSet.getString("gender"));
             }
-            if(data.getSerial() != 0){
+            if (data.getSerial() != 0) {
                 System.out.println(data);
             } else {
                 System.out.println("This data is not exists.");
@@ -108,11 +141,44 @@ public class FitnessRepository {
         return data;
     }
 
-    public Data modifyDataById() {
+    public void modifyData(int id, int height, double weight, double fat, double mucle, double bmi) {
+        String modifyQuery = "UPDATE data SET height = ?, weight = ?, fat = ?, muscle = ?, bmi = ? WHERE id = ?;";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(modifyQuery)) {
+            preparedStatement.setInt(1, height);
+            preparedStatement.setDouble(2, weight);
+            preparedStatement.setDouble(3, fat);
+            preparedStatement.setDouble(4, mucle);
+            preparedStatement.setDouble(5, bmi);
+            preparedStatement.setInt(6, id);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void deleteDataById(int id) {
+        String modifyQuery = "DELETE FROM data WHERE id = ?;";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(modifyQuery)) {
+            preparedStatement.setInt(1, id);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public Data giveFirst() {
+       return null;
+    }
+
+    public Data givePrevious() {
         return null;
     }
 
-    public Data deleteDataById() {
+    public Data giveLast() {
         return null;
     }
 
