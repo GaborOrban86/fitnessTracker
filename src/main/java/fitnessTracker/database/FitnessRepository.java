@@ -85,7 +85,7 @@ public class FitnessRepository {
             while (resultSet.next()) {
                 user.setEmail(resultSet.getString("email"));
                 user.setName(resultSet.getString("name"));
-                user.setGender(user.setAGenderForUser(resultSet.getString("gender")));
+                user.setGender(user.setAGender(resultSet.getString("gender")));
                 user.setYearOfBirth(resultSet.getInt("year_of_birth"));
                 user.setAge(resultSet.getInt("age"));
             }
@@ -141,9 +141,8 @@ public class FitnessRepository {
 
     public Data searchDataById(int id) {
         Data data = new Data();
-        String dataQuery = "SELECT * FROM data f " +
-                "JOIN user u ON u.email = f.user_email " +
-                "WHERE f.id = ?";
+        String dataQuery = "SELECT * FROM data f JOIN user u ON u.email = f.user_email WHERE f.id = ?";
+
         try (PreparedStatement preparedStatement = connection.prepareStatement(dataQuery)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();

@@ -1,11 +1,9 @@
 package fitnessTracker.objects;
 
 import fitnessTracker.enums.Gender;
+import fitnessTracker.interfaces.GenderGiver;
 
-import static fitnessTracker.enums.Gender.FEMALE;
-import static fitnessTracker.enums.Gender.MALE;
-
-public class User extends Human {
+public class User extends Human implements GenderGiver {
     private Data firstData;
     private Data previousData;
     private Data actualData;
@@ -18,15 +16,6 @@ public class User extends Human {
     }
 
 
-    public Gender setAGenderForUser(String genderName) {
-        Gender gender;
-        if (genderName.equals(FEMALE.getGenderName())) {
-            gender = FEMALE;
-        } else {
-            gender = MALE;
-        }
-        return gender;
-    }
 
     @Override
     public String toString() {

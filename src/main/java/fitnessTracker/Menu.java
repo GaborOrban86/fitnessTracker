@@ -3,6 +3,8 @@ package fitnessTracker;
 import fitnessTracker.objects.Data;
 import fitnessTracker.objects.User;
 
+import java.util.List;
+
 public class Menu {
 
     public void printer() {
@@ -42,5 +44,9 @@ public class Menu {
     public double diff(double one, double two) {
         double diff = (int) ((one - two) * 100);
         return diff / 100;
+    }
+
+    public void DataListPrinter(List<Data> list) {
+        list.forEach(System.out::println);
     }
 }

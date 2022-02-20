@@ -3,13 +3,11 @@ package fitnessTracker.objects;
 import fitnessTracker.enums.BMI;
 import fitnessTracker.enums.Gender;
 import fitnessTracker.enums.Rate;
+import fitnessTracker.interfaces.GenderGiver;
 
 import java.time.LocalDate;
 
-import static fitnessTracker.enums.Gender.FEMALE;
-import static fitnessTracker.enums.Gender.MALE;
-
-public class Data {
+public class Data implements GenderGiver {
     private int serial;
     private int height;
     private double weight;
@@ -95,16 +93,6 @@ public class Data {
         } else {
             return Rate.NORMAL;
         }
-    }
-
-    public Gender setAGender(String genderName) {
-        Gender gender;
-        if (genderName.equals(FEMALE.getGenderName())) {
-            gender = FEMALE;
-        } else {
-            gender = MALE;
-        }
-        return gender;
     }
 
     @Override

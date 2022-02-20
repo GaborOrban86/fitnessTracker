@@ -7,7 +7,8 @@ public class FitnessMain {
 
     public static void main(String[] args) {
         FitnessRepository fr = new FitnessRepository();
-        User user = fr.getUserByEmail("hlgkk@gmgm.hu");
-        fr.exportAllDatas(user);
+        User user = fr.getUserByEmail("hlf@gmgm.hu");
+        System.out.println(user.getGender());
+
     }
 }
