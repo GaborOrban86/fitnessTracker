@@ -15,8 +15,6 @@ public class User extends Human implements GenderGiver {
         super(email, name, gender, yearOfBirth);
     }
 
-
-
     @Override
     public String toString() {
         return "User{" +

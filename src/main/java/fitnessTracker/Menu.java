@@ -7,7 +7,26 @@ import java.util.List;
 
 public class Menu {
 
-    public void printer() {
+    public void userMenuPrinter() {
+        System.out.println("Please, choose an option:");
+        System.out.println("1. Create new user");
+        System.out.println("2. Log in with an existing user");
+    }
+
+    public void dataMenuPrinterdata(){
+        System.out.println("Please, choose an option:");
+        System.out.println("1. Enter new data");
+        System.out.println("2. Check your progress");
+        System.out.println("3. View all data");
+        System.out.println("4. Search for a data");
+        System.out.println("5. Modify a data");
+        System.out.println("6. Delete a data");
+        System.out.println("7. Export all data");
+        System.out.println("8. Exit");
+    }
+
+    public void firstDataPrinter() {
+        System.out.println("Enter your first data");
     }
 
     public void resultMessages(User user) {
@@ -36,13 +55,14 @@ public class Menu {
             System.out.println("Current body fat percentage rating: " + actual.getIdealBodyFatRate());
             System.out.println("Current muscle mass index rating: " + actual.getIdealMuscleMassRate());
             System.out.println("Current BMI rating: " + actual.getBmiRate());
+            System.out.println();
         } else {
             System.out.println("There's not any data in the database!");
         }
     }
 
     public double diff(double one, double two) {
-        double diff = (int) ((one - two) * 100);
+        double diff = (int) ((two - one) * 100);
         return diff / 100;
     }
 
