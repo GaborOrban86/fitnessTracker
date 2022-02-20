@@ -14,6 +14,7 @@ public class Menu {
     }
 
     public void dataMenuPrinterdata(){
+        System.out.println();
         System.out.println("Please, choose an option:");
         System.out.println("1. Enter new data");
         System.out.println("2. Check your progress");

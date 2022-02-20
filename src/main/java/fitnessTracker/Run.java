@@ -65,7 +65,12 @@ public class Run {
                     case 2:
                         System.out.println("Enter your email address:");
                         user = fitnessRepository.getUserByEmail(scanner.nextLine());
-                        button = true;
+                        if (user.getName() == null) {
+                            System.out.println("Wrong email!");
+                            button = false;
+                        } else {
+                            button = true;
+                        }
                         break;
 
                     default:
