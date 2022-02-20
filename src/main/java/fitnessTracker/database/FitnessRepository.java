@@ -289,8 +289,8 @@ public class FitnessRepository {
         }
     }
 
-    public Data dataMaker(int id, int height, Double weight, Double fat, Double muscle,
-                          Double bmi, String month, String genderName) {
+    public Data dataMaker(int id, int height, double weight, double fat, double muscle,
+                          double bmi, String month, String genderName) {
         Data data = new Data();
         data.setSerial(id);
         data.setHeight(height);

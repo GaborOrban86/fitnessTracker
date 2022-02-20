@@ -48,7 +48,7 @@ public class Data implements GenderGiver {
 
     }
 
-    private int idealWeightCalculator() {
+    private int idealWeight() {
         return getHeight() - 100;
     }
 
@@ -65,7 +65,7 @@ public class Data implements GenderGiver {
     }
 
     public Rate idealWeightRateCalc() {
-        double idealWeight = idealWeightCalculator();
+        double idealWeight = idealWeight();
         if (weight < idealWeight - (idealWeight * 0.05)) {
             return Rate.LOW;
         } else if (weight > idealWeight + (idealWeight * 0.05)) {

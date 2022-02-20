@@ -118,7 +118,7 @@ public class Run {
                         break;
 
                     case 3:
-                        menu.DataListPrinter(fitnessRepository.allDataByUserEmail(user.getEmail()));
+                        menu.dataListPrinter(fitnessRepository.allDataByUserEmail(user.getEmail()));
                         break;
 
                     case 4:

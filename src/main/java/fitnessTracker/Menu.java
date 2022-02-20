@@ -67,7 +67,7 @@ public class Menu {
         return diff / 100;
     }
 
-    public void DataListPrinter(List<Data> list) {
+    public void dataListPrinter(List<Data> list) {
         list.forEach(System.out::println);
     }
 }
