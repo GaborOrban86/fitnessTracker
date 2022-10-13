@@ -2,9 +2,9 @@ package fitnessTracker.database;
 
 public class DatabaseConfig {
     public static final String DB_URL =
-            "jdbc:mysql://localhost:3306/fitness?createDatabaseIfNotExist=true&serverTimezone=UTC&useSSL=false";
-    public static final String USER = "root";
-    public static final String PASSWORD = "Test123!";
+            "jdbc:h2:mem:testdb";
+    public static final String USER = "sa";
+    public static final String PASSWORD = "sa";
 
     private DatabaseConfig() {
     }
